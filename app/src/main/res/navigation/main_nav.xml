@@ -1,0 +1,61 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.dermalyze.ui.main.HomeFragment"
+        android:label="fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment2"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailArticleActivity"
+            app:destination="@id/detailArticleActivity">
+            <argument
+                android:name="article"
+                app:argType="com.example.dermalyze.ui.main.models.Article" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.example.dermalyze.ui.main.ArticleFragment"
+        android:label="fragment_article">
+        <action
+            android:id="@+id/action_articleFragment_to_detailArticleActivity"
+            app:destination="@id/detailArticleActivity">
+            <argument
+                android:name="article"
+                app:argType="com.example.dermalyze.ui.main.models.Article" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.dermalyze.ui.main.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.dermalyze.ui.main.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+
+    <activity
+        android:id="@+id/detailArticleActivity"
+        android:name="com.example.dermalyze.ui.main.DetailArticleActivity"
+        android:label="activity_detail_article"
+        tools:layout="@layout/activity_detail_article">
+        <argument
+            android:name="article"
+            app:argType="com.example.dermalyze.ui.main.models.Article" />
+    </activity>
+</navigation>
