@@ -1,6 +1,8 @@
 package com.example.dermalyze.camera
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -17,11 +19,17 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.dermalyze.databinding.ActivityCameraBinding
+import com.example.dermalyze.ui.analyze.AnalyzeActivity
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+
+    private fun allPermissionsGranted() =
+        ContextCompat.checkSelfPermission(
+            this, REQUIRED_PERMISSION
+        ) == PackageManager.PERMISSION_GRANTED
 
     private val orientationEventListener by lazy {
         object : OrientationEventListener(this) {
@@ -55,10 +63,18 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (!allPermissionsGranted()) {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CODE_PERMISSIONS)
+        } else {
+            startCamera()
+        }
+
         binding.switchCamera.setOnClickListener {
             startCamera()
         }
-        binding.captureImage.setOnClickListener { takePhoto() }
+        binding.captureImage.setOnClickListener {
+            takePhoto()
+        }
     }
 
     public override fun onResume() {
@@ -92,7 +108,8 @@ class CameraActivity : AppCompatActivity() {
                 cameraProvider.bindToLifecycle(
                     this,
                     cameraSelector,
-                    preview
+                    preview,
+                    imageCapture
                 )
             } catch (exc: Exception) {
                 Toast.makeText(
@@ -117,9 +134,10 @@ class CameraActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra(EXTRA_CAMERAX_IMAGE, outputFileResults.savedUri.toString())
-                    setResult(CAMERAX_RESULT, intent)
+                    val imageUri = outputFileResults.savedUri
+                    val intent = Intent(this@CameraActivity, AnalyzeActivity::class.java)
+                    intent.putExtra(EXTRA_CAMERAX_IMAGE, imageUri.toString())
+                    startActivity(intent)
                     finish()
                 }
 
@@ -152,5 +170,7 @@ class CameraActivity : AppCompatActivity() {
         private const val TAG = "CameraActivity"
         const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
         const val CAMERAX_RESULT = 200
+        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
+        private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }

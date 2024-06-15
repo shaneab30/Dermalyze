@@ -7,7 +7,7 @@
         android:title="@string/artikel"
         android:icon="@drawable/ic_article" />
     <item android:id="@+id/analyzeActivity"
-        android:title="Analyze"
+        android:title="@string/analyze"
         android:icon="@drawable/ic_add"/>
     <item android:id="@+id/historyFragment"
         android:title="@string/history"

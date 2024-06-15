@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.dermalyze.R
+import com.example.dermalyze.camera.CameraActivity
 import com.example.dermalyze.databinding.ActivityMainBinding
-import com.example.dermalyze.ui.analyze.AnalyzeActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnNavigationItemSelectedListener {item ->
             when (item.itemId){
                 R.id.analyzeActivity -> {
-                    val intent = Intent(this,AnalyzeActivity::class.java)
+                    val intent = Intent(this,CameraActivity::class.java)
                     startActivity(intent)
                     true
                 } else -> {
