@@ -3,6 +3,7 @@ package com.example.dermalyze.camera
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,8 @@ import android.view.Surface
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -25,6 +28,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+    private var currentImageUri: Uri? = null
 
     private fun allPermissionsGranted() =
         ContextCompat.checkSelfPermission(
@@ -69,18 +73,20 @@ class CameraActivity : AppCompatActivity() {
             startCamera()
         }
 
-        binding.switchCamera.setOnClickListener {
+        binding.btnChange.setOnClickListener {
             startCamera()
         }
-        binding.captureImage.setOnClickListener {
+        binding.btnCapture.setOnClickListener {
             takePhoto()
         }
+        binding.btnClose.setOnClickListener { this.onBackPressedDispatcher.onBackPressed()}
+        binding.btnGallery.setOnClickListener { startGallery() }
     }
 
     public override fun onResume() {
         super.onResume()
         hideSystemUI()
-        binding.switchCamera.setOnClickListener {
+        binding.btnChange.setOnClickListener {
             cameraSelector =
                 if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
                 else CameraSelector.DEFAULT_BACK_CAMERA
@@ -151,6 +157,30 @@ class CameraActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    private fun startGallery() {
+        galleryLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val galleryLauncher = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            currentImageUri = uri
+            showImage()
+        } else {
+            Log.d("TAG", "No Media Selected")
+        }
+    }
+
+    private fun showImage() {
+        currentImageUri?.let { uri ->
+            val intent = Intent(this@CameraActivity, AnalyzeActivity::class.java)
+            intent.putExtra(EXTRA_CAMERAX_IMAGE, uri.toString())
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun hideSystemUI() {

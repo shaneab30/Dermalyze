@@ -47,4 +47,5 @@
     <string name="dry_skin">Dry Skin</string>
     <string name="normal_skin">Normal Skin</string>
     <string name="analyze">Analyze</string>
+    <string name="take_a_photo">Ambil gambar</string>
 </resources>

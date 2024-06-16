@@ -20,12 +20,16 @@ class AnalyzeActivity : AppCompatActivity() {
         binding = ActivityAnalyzeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.cameraButton.setOnClickListener {
+        binding.btnClose.setOnClickListener {
             startCamera()
         }
-        binding.galleryButton.setOnClickListener {
-            startGallery()
-        }
+
+//        binding.cameraButton.setOnClickListener {
+//            startCamera()
+//        }
+//        binding.galleryButton.setOnClickListener {
+//            startGallery()
+//        }
 
         // Handle the intent from CameraActivity
         val imageUri = intent.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)
@@ -57,7 +61,7 @@ class AnalyzeActivity : AppCompatActivity() {
 
     private fun showImage() {
         currentImageUri?.let {
-            binding.previewImageView.setImageURI(it)
+            binding.ivImage.setImageURI(it)
         }
     }
 
