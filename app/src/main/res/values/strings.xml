@@ -4,8 +4,8 @@
     <string name="password">Password</string>
     <string name="signup">Sign Up</string>
     <string name="login">Login</string>
-    <string name="title_login_page">Sudah siap upgrade skill?</string>
-    <string name="title_signup_page">Daftar Sekarang!</string>
+    <string name="title_login_page">Demalyze Now!, Login</string>
+    <string name="title_signup_page">Fill in your personal information</string>
     <string name="Nama">Nama</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
