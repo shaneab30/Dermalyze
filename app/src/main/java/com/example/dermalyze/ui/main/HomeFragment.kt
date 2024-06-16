@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     private fun setUpView() {
         binding?.contentHome?.apply {
             analysCard.btnAnalys.setOnClickListener {
-                navigateToArticle()
+                navigateToAnalyze()
             }
             tvArticle.setOnClickListener {
                 navigateToArticle()
@@ -49,6 +49,11 @@ class HomeFragment : Fragment() {
 
     private fun navigateToArticle() {
         val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToAnalyze() {
+        val action = HomeFragmentDirections.actionHomeFragmentToCameraActivity()
         findNavController().navigate(action)
     }
 

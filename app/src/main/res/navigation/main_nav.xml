@@ -24,6 +24,9 @@
                 android:name="article"
                 app:argType="com.example.dermalyze.ui.main.models.Article" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_cameraActivity"
+            app:destination="@id/cameraActivity" />
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
@@ -58,4 +61,9 @@
             android:name="article"
             app:argType="com.example.dermalyze.ui.main.models.Article" />
     </activity>
+    <activity
+        android:id="@+id/cameraActivity"
+        android:name="com.example.dermalyze.camera.CameraActivity"
+        android:label="activity_camera"
+        tools:layout="@layout/activity_camera" />
 </navigation>
