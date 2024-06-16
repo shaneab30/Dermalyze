@@ -3,9 +3,6 @@ package com.example.dermalyze.ui.analyze
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dermalyze.camera.CameraActivity
 import com.example.dermalyze.databinding.ActivityAnalyzeBinding
@@ -20,42 +17,20 @@ class AnalyzeActivity : AppCompatActivity() {
         binding = ActivityAnalyzeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnClose.setOnClickListener {
-            startCamera()
+        binding.btnAnalyze.setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            currentImageUri?.let {
+                intent.putExtra(EXTRA_IMAGE_URI, it.toString())
+            }
+            startActivity(intent)
         }
 
-//        binding.cameraButton.setOnClickListener {
-//            startCamera()
-//        }
-//        binding.galleryButton.setOnClickListener {
-//            startGallery()
-//        }
 
         // Handle the intent from CameraActivity
         val imageUri = intent.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)
         if (imageUri != null) {
             currentImageUri = Uri.parse(imageUri)
             showImage()
-        }
-    }
-
-    private fun startCamera() {
-        val intent = Intent(this, CameraActivity::class.java)
-        startActivityForResult(intent, CameraActivity.CAMERAX_RESULT)
-    }
-
-    private fun startGallery() {
-        galleryLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-
-    private val galleryLauncher = registerForActivityResult(
-        ActivityResultContracts.PickVisualMedia()
-    ) { uri: Uri? ->
-        if (uri != null) {
-            currentImageUri = uri
-            showImage()
-        } else {
-            Log.d("TAG", "No Media Selected")
         }
     }
 
@@ -74,5 +49,9 @@ class AnalyzeActivity : AppCompatActivity() {
                 showImage()
             }
         }
+    }
+
+    companion object {
+        const val EXTRA_IMAGE_URI ="Analyze Image"
     }
 }

@@ -88,6 +88,7 @@
             <Button
                 android:id="@+id/signupButton"
                 style="?attr/materialButtonOutlinedStyle"
+                android:textColor="@color/green"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"

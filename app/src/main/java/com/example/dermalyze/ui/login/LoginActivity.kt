@@ -92,6 +92,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                 lifecycleScope.launch {
                     val token = response.loginResult?.token ?: ""
+                    Log.d("Bearer Token", "Bearer $token")
                     loginViewModel.saveToken(token)
                     navigateToMainActivity()
                 }
