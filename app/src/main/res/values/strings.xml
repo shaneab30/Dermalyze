@@ -48,4 +48,7 @@
     <string name="normal_skin">Normal Skin</string>
     <string name="analyze">Analyze</string>
     <string name="take_a_photo">Ambil gambar</string>
+    <string name="disease_name">Disease Name</string>
+    <string name="description_disease">Description Disease</string>
+    <string name="logout">Logout</string>
 </resources>

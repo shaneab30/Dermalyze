@@ -12,8 +12,13 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"/>
 
     <application
+        android:requestLegacyExternalStorage="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -23,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dermalyze"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.analyze.ResultActivity"
+            android:exported="false" />
         <activity
             android:name=".camera.CameraActivity"
             android:exported="false" />
