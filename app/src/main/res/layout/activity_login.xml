@@ -103,6 +103,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="@string/login"
+                android:backgroundTint="@color/green"
                 android:alpha="0"
                 tools:alpha="100"/>
 
