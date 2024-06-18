@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dermalyze.camera.CameraActivity
+import com.example.dermalyze.data.response.AnalyzeResponse
 import com.example.dermalyze.databinding.ActivityResultBinding
 import com.example.dermalyze.ui.main.MainActivity
 
@@ -17,6 +18,12 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val response: AnalyzeResponse? = intent.getParcelableExtra(AnalyzeActivity.EXTRA_ANALYZE_RESPONSE)
+        response?.let {
+            // Update UI with the response data
+            displayResponse(it)
+        }
 
         binding.backHome.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -35,6 +42,11 @@ class ResultActivity : AppCompatActivity() {
             currentImageUri = Uri.parse(imageUri)
             showImage()
         }
+    }
+
+    private fun displayResponse(response: AnalyzeResponse){
+        binding.diseaseName.text = response.diseasePrediction?.prediction
+        binding.diseaseDesc.text = response.skinConditionInformation?.definition
     }
 
 

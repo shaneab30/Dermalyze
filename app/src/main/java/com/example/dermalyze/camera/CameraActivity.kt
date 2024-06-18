@@ -178,7 +178,6 @@ class CameraActivity : AppCompatActivity() {
             val intent = Intent(this@CameraActivity, AnalyzeActivity::class.java)
             intent.putExtra(EXTRA_CAMERAX_IMAGE, uri.toString())
             startActivity(intent)
-            finish()
         }
     }
 

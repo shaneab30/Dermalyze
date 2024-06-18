@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object ApiConfig {
-    private const val BASE_URL = "https://bangkit-coba-capstone-irvan.et.r.appspot.com/"
+    private const val BASE_URL = "https://user-database-dot-bangkit-capstone-c241-ps083.et.r.appspot.com"
 
     fun getApiService(): ApiService {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
