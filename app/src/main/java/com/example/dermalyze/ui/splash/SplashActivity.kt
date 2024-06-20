@@ -27,13 +27,11 @@ class SplashActivity : AppCompatActivity() {
             val token = userPreference.getUserToken().firstOrNull()
 
             if (!token.isNullOrEmpty()) {
-                // User is logged in, navigate to MainActivity
                 navigateToMainActivity()
             } else {
-                // User is not logged in, navigate to LoginActivity after a delay
                 Handler(Looper.getMainLooper()).postDelayed({
                     navigateToLoginActivity()
-                }, 3000) // 3 seconds delay
+                }, 3000)
             }
         }
     }
