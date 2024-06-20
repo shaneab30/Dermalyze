@@ -1,4 +1,4 @@
-package com.example.dermalyze.ui.Article
+package com.example.dermalyze.ui.article
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import com.example.dermalyze.ui.main.utils.Extensions.showImageInto
 class DetailArticleActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailArticleBinding
-    private val navArgs: com.example.dermalyze.ui.main.DetailArticleActivityArgs by navArgs()
+    private val navArgs: DetailArticleActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,4 +1,4 @@
-package com.example.dermalyze.ui.Article
+package com.example.dermalyze.ui.article
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

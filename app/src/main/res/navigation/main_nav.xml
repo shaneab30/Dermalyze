@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.dermalyze.ui.Article.ArticleFragment"
+        android:name="com.example.dermalyze.ui.article.ArticleFragment"
         android:label="fragment_article">
         <action
             android:id="@+id/action_articleFragment_to_detailArticleActivity"
@@ -67,7 +67,7 @@
 
     <activity
         android:id="@+id/detailArticleActivity"
-        android:name="com.example.dermalyze.ui.Article.DetailArticleActivity"
+        android:name="com.example.dermalyze.ui.article.DetailArticleActivity"
         android:label="activity_detail_article"
         tools:layout="@layout/activity_detail_article">
         <argument

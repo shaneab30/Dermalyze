@@ -1,5 +1,6 @@
 package com.example.dermalyze.datastore
 
+
 import com.example.dermalyze.data.ApiService
 import com.example.dermalyze.data.response.LoginResponse
 
@@ -20,4 +21,6 @@ class UserRepository(
     fun getUserPreference(): UserPreference {
         return userPreference
     }
+
+
 }

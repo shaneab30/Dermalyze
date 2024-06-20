@@ -24,10 +24,10 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(Injection.provideUserRepository(this))
+        LoginViewModelFactory(Injection.provideUserRepository(this), this)
     }
 
-    private lateinit var CustomLoginButton: CustomLoginButton
+    private lateinit var customLoginButton: CustomLoginButton
 
     private var emailTextField: TextInputLayout? = null
     private var passwordTextField: TextInputLayout? = null
@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        CustomLoginButton = binding.loginButton
+        customLoginButton = binding.loginButton
         setMyButtonEnable()
 
         playAnimation()
@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
         // Check if the user is already logged in
         checkIfUserLoggedIn()
 
-        CustomLoginButton.setOnClickListener {
+        customLoginButton.setOnClickListener {
             allFieldsChecked = checkAllField()
 
             if (allFieldsChecked) {
@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setMyButtonEnable() {
         val emailFilled = emailTextField?.editText?.text?.isNotEmpty() == true
         val passwordFilled = passwordTextField?.editText?.text?.isNotEmpty() == true
-        CustomLoginButton.isEnabled = emailFilled && passwordFilled
+        customLoginButton.isEnabled = emailFilled && passwordFilled
     }
 
     private fun loginUser(email: String, password: String) {
@@ -92,9 +92,14 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                 lifecycleScope.launch {
                     val token = response.loginResult?.token ?: ""
+                    val firstName = response.loginResult?.firstName ?: ""
+                    val email = response.loginResult?.email ?: ""
+
                     Log.d("Bearer Token", "Bearer $token")
                     loginViewModel.saveToken(token)
+                    loginViewModel.saveUserDetails(firstName, email)
                     navigateToMainActivity()
+                    finish()
                 }
             } else {
                 Toast.makeText(this, response?.message ?: "Login failed!", Toast.LENGTH_SHORT).show()

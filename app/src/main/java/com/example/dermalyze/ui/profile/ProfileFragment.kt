@@ -6,28 +6,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dermalyze.databinding.FragmentProfileBinding
 import com.example.dermalyze.datastore.Injection
 import com.example.dermalyze.ui.login.LoginActivity
-import kotlinx.coroutines.runBlocking
-
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? =null
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) : View? {
-        _binding = FragmentProfileBinding.inflate(layoutInflater)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding?.root
-        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        retrieveUserDetails()
+
         binding?.logoutButton?.setOnClickListener {
-            runBlocking {
+            lifecycleScope.launch {
                 val userPreference = Injection.provideUserRepository(requireContext()).getUserPreference()
                 userPreference.saveUserToken("")
+                userPreference.saveFirstName("")
+                userPreference.saveEmail("")
+
             }
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
@@ -44,31 +51,36 @@ class ProfileFragment : Fragment() {
             tvSetting.setOnClickListener {
                 moveToSetting()
             }
+        }
+    }
 
+    private fun retrieveUserDetails() {
+        lifecycleScope.launch {
+            val userPreference = Injection.provideUserRepository(requireContext()).getUserPreference()
+            val firstName = userPreference.getFirstName().firstOrNull() ?: ""
+            val email = userPreference.getEmail().firstOrNull() ?: ""
+            binding?.tvMy?.text = firstName
+            binding?.tvEmail?.text = email
         }
     }
 
     private fun moveToCallService() {
-        val interaction =
-            com.example.dermalyze.ui.main.ProfileFragmentDirections.actionProfileFragmentToPrivacyFragment()
-        findNavController()
-            .navigate(interaction)    }
+        val action = ProfileFragmentDirections.actionProfileFragmentToPrivacyFragment()
+        findNavController().navigate(action)
+    }
 
     private fun moveToSetting() {
-        val interaction =
-            com.example.dermalyze.ui.main.ProfileFragmentDirections.actionProfileFragmentToSettingFragment()
-        findNavController().navigate(interaction)
+        val action = ProfileFragmentDirections.actionProfileFragmentToSettingFragment()
+        findNavController().navigate(action)
     }
 
     private fun moveToMyProfile() {
-        val interaction =
-            com.example.dermalyze.ui.main.ProfileFragmentDirections.actionProfileFragmentToMyProfilFragment()
-        findNavController().navigate(interaction)
+        val action = ProfileFragmentDirections.actionProfileFragmentToMyProfilFragment()
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

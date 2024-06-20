@@ -73,4 +73,10 @@
     <string name="dark_mode">Mode Malam</string>
     <string name="update">Perbarui</string>
     <string name="your_not_have_notif">Kamu belum mendapatkan notifikasi</string>
+    <string name="hi_user">Hi, %1$s</string>
+    <string name="self_care_tips">Self Care Tips</string>
+    <string name="treatable">Treatable</string>
+    <string name="common_causes">Common Causes</string>
+    <string name="disease_description">Disease Description</string>
+    <string name="skin_type">Skin Type</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.dermalyze.ui.Article
+package com.example.dermalyze.ui.article
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,19 +19,15 @@ import com.example.dermalyze.databinding.FragmentArticleBinding
 import com.example.dermalyze.ui.main.data.ArticlesData
 
 class ArticleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var _binding: FragmentArticleBinding? = null
     private val binding get() = _binding
     private lateinit var articleAdapter: ArticleAdapter
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentArticleBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentArticleBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -39,7 +35,6 @@ class ArticleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolBar()
         setUpRecyclerView()
-
     }
 
     private fun setUpToolBar() {
@@ -63,13 +58,11 @@ class ArticleFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        val article = ArticlesData.dummyArticles
+        val articles = ArticlesData.dummyArticles
 
         articleAdapter = ArticleAdapter { article ->
             val action =
-                com.example.dermalyze.ui.main.ArticleFragmentDirections.actionArticleFragmentToDetailArticleActivity(
-                    article
-                )
+                ArticleFragmentDirections.actionArticleFragmentToDetailArticleActivity(article)
             findNavController().navigate(action)
         }
 
@@ -78,9 +71,8 @@ class ArticleFragment : Fragment() {
             adapter = articleAdapter
         }
 
-        articleAdapter.submitList(article)
+        articleAdapter.submitList(articles)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

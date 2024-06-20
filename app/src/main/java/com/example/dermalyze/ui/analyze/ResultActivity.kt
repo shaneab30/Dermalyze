@@ -21,7 +21,6 @@ class ResultActivity : AppCompatActivity() {
 
         val response: AnalyzeResponse? = intent.getParcelableExtra(AnalyzeActivity.EXTRA_ANALYZE_RESPONSE)
         response?.let {
-            // Update UI with the response data
             displayResponse(it)
         }
 
@@ -47,6 +46,10 @@ class ResultActivity : AppCompatActivity() {
     private fun displayResponse(response: AnalyzeResponse){
         binding.diseaseName.text = response.diseasePrediction?.prediction
         binding.diseaseDesc.text = response.skinConditionInformation?.definition
+        binding.commonCause.text = response.skinConditionInformation?.commonCauses.toString()
+        binding.treatable.text =response.skinConditionInformation?.treatable
+        binding.selfcaretips.text =  response.skinConditionInformation?.selfCareTips.toString()
+        binding.skinType.text = response.skinTypePrediction?.prediction
     }
 
 
