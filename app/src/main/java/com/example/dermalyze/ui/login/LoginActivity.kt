@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //testttt
 
         customLoginButton = binding.loginButton
         setMyButtonEnable()
