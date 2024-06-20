@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="20dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/img_container_card_obat"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+        <ImageView
+            android:id="@+id/img_card_obat"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:contentDescription="@string/dummy_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/scarlet1" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/tv_title_obat"
+        style="@style/TextAppearance.Material3.ActionBar.Title"
+        android:layout_width="220dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Glowtening Serum"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_container_card_obat" />
+
+    <TextView
+        android:id="@+id/tv_description_obat"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="8dp"
+        android:text="Scarlett Whitening Glowtening Serum 15ml"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_obat"/>
+
+    <TextView
+        android:id="@+id/tv_content_obat"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="6dp"
+        android:text="[Selengkapnya]"
+        android:textColor="@color/seed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description_obat"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

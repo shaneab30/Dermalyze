@@ -44,7 +44,7 @@
             android:name=".ui.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.DetailArticleActivity"
+            android:name=".ui.Article.DetailArticleActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LoginActivity"

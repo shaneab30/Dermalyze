@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, navDestination, _ ->
             Handler(Looper.getMainLooper()).post {
                 when (navDestination.id) {
-                    R.id.homeFragment, R.id.articleFragment, R.id.historyFragment, R.id.profileFragment, R.id.analyzeActivity-> {
+                    R.id.homeFragment, R.id.articleFragment, R.id.productFragment, R.id.profileFragment, R.id.analyzeActivity-> {
                         binding.bottomNav.visibility = View.VISIBLE
                     }
                     else -> {

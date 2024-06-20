@@ -1,22 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.ProfileFragment">
+    style="@style/Widget.Material3.CardView.Outlined"
+    android:layout_marginHorizontal="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/myPict"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/round_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/my_profile" />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-    <Button
-        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/a"
+        app:layout_constraintTop_toTopOf="@+id/myPict"
+        app:layout_constraintStart_toStartOf="@+id/myPict"
+        app:layout_constraintEnd_toEndOf="@+id/myPict"
+        app:layout_constraintBottom_toBottomOf="@+id/myPict"
+        style="@style/TextAppearance.Material3.DisplayLarge"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/tvMy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/myPict"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_marginTop="8dp"
+        android:text="@string/alea_piraxy"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/myPict"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvMy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/aleaapiraxy_gmail_com"
+        android:textAlignment="center"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_myProfile"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_person"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="16dp"
+        android:paddingVertical="16dp"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:gravity="center_vertical"
+        android:text="@string/my_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/text_line"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_privation"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/outline_contact_support"
+        android:drawablePadding="8dp"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:gravity="center_vertical"
+        android:background="@drawable/text_line"
+        android:text="@string/contact_support"
+        app:layout_constraintTop_toBottomOf="@+id/tv_myProfile"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_setting"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="16dp"
+        android:drawableStart="@drawable/outline_settings"
+        android:drawablePadding="8dp"
+        android:drawableEnd="@drawable/ic_chevron_right"
+        android:gravity="center_vertical"
+        android:background="@drawable/text_line"
+        android:text="@string/setting"
+        app:layout_constraintTop_toBottomOf="@+id/tv_privation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_setting"
+        android:layout_marginHorizontal="16dp"
         android:text="@string/logout"
-        android:backgroundTint="@color/green" />
+        android:backgroundTint="@color/green"/>
 
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

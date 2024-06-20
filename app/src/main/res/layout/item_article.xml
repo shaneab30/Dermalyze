@@ -22,6 +22,16 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_title"
             tools:src="@drawable/kurap"/>
 
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/iv_cover"
+            app:layout_constraintEnd_toEndOf="@id/iv_cover"
+            app:layout_constraintTop_toTopOf="@id/tv_title"/>
+
         <TextView
             android:id="@+id/tv_title"
             android:textStyle="bold"

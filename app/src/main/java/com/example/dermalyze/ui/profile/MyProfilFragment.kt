@@ -1,57 +1,52 @@
-package com.example.dermalyze.ui.main
+package com.example.dermalyze.ui.profile
 
-import ArticleAdapter
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dermalyze.R
-import com.example.dermalyze.databinding.FragmentArticleBinding
-import com.example.dermalyze.ui.main.data.ArticlesData
+import com.example.dermalyze.databinding.FragmentMyProfilBinding
 
-class ArticleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var _binding: FragmentArticleBinding? = null
+
+class MyProfilFragment : Fragment() {
+
+    private var _binding : FragmentMyProfilBinding? = null
     private val binding get() = _binding
-    private lateinit var articleAdapter: ArticleAdapter
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentArticleBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentMyProfilBinding.inflate(layoutInflater, container, false)
         return binding?.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpToolBar()
-        setUpRecyclerView()
 
+        setUpToolbar()
+        setUpView()
     }
 
-    private fun setUpToolBar() {
+
+    private fun setUpToolbar() {
         (activity as AppCompatActivity).apply {
             setSupportActionBar(binding?.toolbar)
             supportActionBar?.apply {
                 setDisplayHomeAsUpEnabled(true)
-                title = getString(R.string.artikel)
+                title = getString(R.string.my_profile)
             }
         }
-
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
@@ -63,25 +58,16 @@ class ArticleFragment : Fragment() {
         }, viewLifecycleOwner, Lifecycle.State.CREATED)
     }
 
-    private fun setUpRecyclerView() {
-        val article = ArticlesData.dummyArticles
-
-        articleAdapter = ArticleAdapter { article ->
-            val action = ArticleFragmentDirections.actionArticleFragmentToDetailArticleActivity(article)
-            findNavController().navigate(action)
+    private fun setUpView() {
+        binding?.apply {
+            btnUpdate.setOnClickListener {
+                Toast.makeText(requireActivity(), "Fitur ini sedang dalam tahap pengembangan", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        binding?.rvArticle?.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = articleAdapter
-        }
-
-        articleAdapter.submitList(article)
     }
 
-
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
     }
 }

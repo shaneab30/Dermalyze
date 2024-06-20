@@ -9,9 +9,9 @@
     <item android:id="@+id/analyzeActivity"
         android:title="@string/analyze"
         android:icon="@drawable/ic_add"/>
-    <item android:id="@+id/historyFragment"
-        android:title="@string/history"
-        android:icon="@drawable/ic_story" />
+    <item android:id="@+id/productFragment"
+        android:title="@string/product"
+        android:icon="@drawable/ic_product" />
     <item android:id="@+id/profileFragment"
         android:title="@string/profil"
         android:icon="@drawable/ic_person" />

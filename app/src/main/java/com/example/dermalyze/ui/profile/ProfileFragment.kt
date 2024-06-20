@@ -1,4 +1,4 @@
-package com.example.dermalyze.ui.main
+package com.example.dermalyze.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.dermalyze.databinding.FragmentProfileBinding
 import com.example.dermalyze.datastore.Injection
 import com.example.dermalyze.ui.login.LoginActivity
@@ -32,6 +33,37 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+
+        binding?.apply {
+            tvMyProfile.setOnClickListener {
+                moveToMyProfile()
+            }
+            tvPrivation.setOnClickListener {
+                moveToCallService()
+            }
+            tvSetting.setOnClickListener {
+                moveToSetting()
+            }
+
+        }
+    }
+
+    private fun moveToCallService() {
+        val interaction =
+            com.example.dermalyze.ui.main.ProfileFragmentDirections.actionProfileFragmentToPrivacyFragment()
+        findNavController()
+            .navigate(interaction)    }
+
+    private fun moveToSetting() {
+        val interaction =
+            com.example.dermalyze.ui.main.ProfileFragmentDirections.actionProfileFragmentToSettingFragment()
+        findNavController().navigate(interaction)
+    }
+
+    private fun moveToMyProfile() {
+        val interaction =
+            com.example.dermalyze.ui.main.ProfileFragmentDirections.actionProfileFragmentToMyProfilFragment()
+        findNavController().navigate(interaction)
     }
 
     override fun onDestroyView() {

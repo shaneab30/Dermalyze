@@ -1,6 +1,6 @@
 package com.example.dermalyze.ui.main
 
-import ArticleAdapter
+import com.example.dermalyze.ui.Article.ArticleAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,8 +43,17 @@ class HomeFragment : Fragment() {
             tvArticle.setOnClickListener {
                 navigateToArticle()
             }
-
+            topBar.apply {
+                ibNotification.setOnClickListener {
+                    navigateToNotification()
+                }
+            }
         }
+    }
+
+    private fun navigateToNotification() {
+        val action = HomeFragmentDirections.actionHomeFragmentToNotificationFragment()
+        findNavController().navigate(action)
     }
 
     private fun navigateToArticle() {
